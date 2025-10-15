@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Car Parking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-message">
+            <h2>Welcome, {{ username }}</h2>
+            <p>Administrator Dashboard</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <a href="/add_vehicle" style="text-decoration: none;">
+                <div class="dashboard-card">
+                    <span class="icon">🚗</span>
+                    <h3>Add Vehicle</h3>
+                    <p>Register a new vehicle in the parking system</p>
+                </div>
+            </a>
+
+            <a href="/exit_vehicle" style="text-decoration: none;">
+                <div class="dashboard-card">
+                    <span class="icon">🚪</span>
+                    <h3>Exit Vehicle</h3>
+                    <p>Process vehicle departure and billing</p>
+                </div>
+            </a>
+
+            <a href="/view_vehicles" style="text-decoration: none;">
+                <div class="dashboard-card">
+                    <span class="icon">📋</span>
+                    <h3>View Vehicles</h3>
+                    <p>See all currently parked vehicles</p>
+                </div>
+            </a>
+
+            <a href="/view_transactions" style="text-decoration: none;">
+                <div class="dashboard-card">
+                    <span class="icon">💰</span>
+                    <h3>View Transactions</h3>
+                    <p>Review all parking transactions</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="/logout" class="logout-btn">🚪 Logout</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Car Parking System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

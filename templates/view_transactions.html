@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Transactions - Car Parking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="/admin_dashboard" class="back-btn">Back to Dashboard</a>
+        
+        <div class="page-header">
+            <h2>Parking Transactions</h2>
+            <p style="color: var(--light-text); margin-top: -15px;">Complete history of all parking transactions</p>
+        </div>
+
+        {% if transactions %}
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vehicle Number</th>
+                        <th>Entry Time</th>
+                        <th>Exit Time</th>
+                        <th>Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in transactions %}
+                    <tr>
+                        <td>{{ t.id }}</td>
+                        <td><strong>{{ t.vehicle_number }}</strong></td>
+                        <td>{{ t.entry_time }}</td>
+                        <td>{{ t.exit_time }}</td>
+                        <td><span class="badge badge-warning">₹{{ t.fee }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No transactions found.
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            <p>&copy; 2025 Car Parking System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

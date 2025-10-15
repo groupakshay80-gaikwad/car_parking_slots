@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Vehicle - Car Parking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="/admin_dashboard" class="back-btn">Back to Dashboard</a>
+        
+        <div class="page-header">
+            <h2>Add New Vehicle</h2>
+            <p style="color: var(--light-text); margin-top: -15px;">Register a vehicle in the parking system</p>
+        </div>
+
+        {% if message %}
+            {% if message_type == 'success' %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% elif message_type == 'error' %}
+            <div class="alert alert-error">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="vehicle_number">🚗 Vehicle Number:</label>
+                <input type="text" name="vehicle_number" id="vehicle_number" placeholder="e.g., ABC-1234" required>
+            </div>
+
+            <div class="form-group">
+                <label for="owner_name">👤 Owner Name:</label>
+                <input type="text" name="owner_name" id="owner_name" placeholder="Enter owner's full name" required>
+            </div>
+
+            <button type="submit">Add Vehicle</button>
+        </form>
+
+        <div class="footer">
+            <p>&copy; 2025 Car Parking System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

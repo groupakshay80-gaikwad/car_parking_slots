@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exit Vehicle</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #555;
+            color: white;
+        }
+        .message {
+            text-align: center;
+            color: green;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .error {
+            text-align: center;
+            color: red;
+            margin: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 6px;
+            width: 200px;
+        }
+        button {
+            padding: 6px 10px;
+        }
+    </style>
+    <script>
+        function searchVehicle() {
+            let input = document.getElementById("searchInput").value.toUpperCase();
+            let table = document.getElementById("vehiclesTable");
+            let tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) { // skip header row
+                let td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    let txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toUpperCase().indexOf(input) > -1 ? "" : "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 style="text-align:center;">Exit Vehicle</h2>
+
+    {% if message %}
+        <div class="{{ 'message' if 'exited' in message else 'error' }}">{{ message }}</div>
+    {% endif %}
+
+    <div style="text-align:center; margin-bottom:10px;">
+        <input type="text" id="searchInput" onkeyup="searchVehicle()" placeholder="Search vehicle number...">
+    </div>
+
+    <table id="vehiclesTable">
+        <tr>
+            <th>Vehicle Number</th>
+            <th>Entry Time</th>
+            <th>Slot Code</th>
+            <th>Action</th>
+        </tr>
+        {% for vehicle in vehicles %}
+        <tr>
+            <td>{{ vehicle.vehicle_number }}</td>
+            <td>{{ vehicle.entry_time }}</td>
+            <td>{{ vehicle.slot_code }}</td>
+            <td>
+                <form method="POST" style="margin:0;">
+                    <input type="hidden" name="vehicle_number" value="{{ vehicle.vehicle_number }}">
+                    <button type="submit">Exit</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
